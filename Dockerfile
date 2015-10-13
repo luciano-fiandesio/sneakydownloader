@@ -5,8 +5,11 @@ FROM    ubuntu:latest
 RUN    apt-get -y update
 RUN    apt-get -y install nodejs
 RUN    apt-get -y install npm
-
+RUN    apt-get -y install nodejs-legacy
 # Bundle app source
 ADD . /src
 # Install app dependencies
 RUN cd /src; npm install
+
+EXPOSE 3000 
+# CMD ["npm start"]
