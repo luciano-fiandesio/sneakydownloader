@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method="post", action="/wget")
+    label Url
+    input(type="text", name="url")
+    p
+    input(type="submit")
+
+
+  ul
+    each file in files
+        li
+          a(href='down?id='+file.hash) #{file.name}
