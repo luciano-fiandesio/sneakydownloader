@@ -31,7 +31,6 @@ router.post('/wget', function(reqx, resx) {
             console.log(" error : "  + err);
         });
         download.on('end', function(output) {
-            //console.log(output);
             resx.redirect('/');
         });
 });
@@ -41,14 +40,12 @@ router.get('/down', function(req, res) {
     _files.listFiles(outputDir, function(err, files) {
         files.forEach(function(file) {
             if (hash === md5(file.name)) {
-                zip.file(file.name+'.b64', _files.base64_encode(outputDir+file.name));
+                zip.file(file.name+'.b64', _files.base64_encode(outputDir + file.name));
                 _files.writeSync(tmpDir+file.name+'.zip', zip.generate({base64:false,compression:'DEFLATE'}));
                 res.download(tmpDir+file.name+'.zip');
             }
 
         });
-//        res.redirect('/');
-
     });
 
 });
